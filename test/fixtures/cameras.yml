@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pinhole_diameter: 1.5
+  focal_length: 1.5
+  image_width: 1.5
+  distortion: 1.5
+  pinhole_to_image_angle: 1.5
+
+two:
+  pinhole_diameter: 1.5
+  focal_length: 1.5
+  image_width: 1.5
+  distortion: 1.5
+  pinhole_to_image_angle: 1.5
