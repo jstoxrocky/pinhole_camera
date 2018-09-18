@@ -10,20 +10,6 @@ RSpec.describe Camera, type: :model do
 
   describe "Camera" do
 
-    it "should calculate correct Petzval focal length from a given pinhole diameter" do
-      expected = 454.5454545454545
-      camera = Camera.new(@attr)
-      value = camera.calc_petzval_focal_length
-      expect(value).to be == expected
-    end
-
-    it "should calculate correct Young focal length from a given pinhole diameter" do
-      expected = 1818.181818181818
-      camera = Camera.new(@attr)
-      value = camera.calc_young_focal_length
-      expect(value).to be == expected
-    end
-
     it "should calculate correct Prober-Wellman focal length from a given pinhole diameter" do
       expected = 745.1564828614008
       camera = Camera.new(@attr)
