@@ -1,5 +1,7 @@
 class CamerasController < ApplicationController
 
+  # skip_before_action :verify_authenticity_token
+
   def index
     @cameras = Camera.all
     render json: @cameras
@@ -17,7 +19,7 @@ class CamerasController < ApplicationController
   end
 
   private
-  
+
   def camera_params
     params.require(:camera).permit(:pinhole_diameter)
   end

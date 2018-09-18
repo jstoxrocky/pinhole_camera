@@ -67,3 +67,5 @@ gem "factory_bot", "~> 4.11"
 gem "minimization", "~> 0.2.3"
 gem "rspec-rails", "3.8.0"
 gem "factory_bot_rails", "4.11.1"
+
+gem "rack-cors", "~> 1.0"

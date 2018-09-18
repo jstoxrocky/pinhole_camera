@@ -2,21 +2,20 @@ require 'minimization'
 
 class Camera < ApplicationRecord
 
-  def calc_petzval_focal_length
-    wavelength_light = 0.00055 #550 nm
-    (1 / wavelength_light) * ((self.pinhole_diameter / 2.0) ** 2)
-  end
+  validates :pinhole_diameter, {
+    :presence => true, 
+    numericality: {
+      only_float: true,
+      :greater_than => 0,
+    },
+  }
 
-  def calc_young_focal_length
-    wavelength_light = 0.00055 #550 nm
-    (self.pinhole_diameter ** 2) / wavelength_light
-  end
+  @@WAVELENGHT_LIGHT = 0.00055 # nm
 
   def calc_pw_focal_length
-    wavelength_light = 0.00055 #550 nm
     m = 0 # 0: infinity (object distance so large compared to image distance)
           # 1: object distance is equal to image distance
-    ((self.pinhole_diameter ** 2.0) * (1 + m)) / (2.44 * wavelength_light)
+    ((self.pinhole_diameter ** 2.0) * (1 + m)) / (2.44 * @@WAVELENGHT_LIGHT)
   end
 
   def calc_pinhole_to_image_angle(image_width, focal_length)
