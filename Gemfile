@@ -69,3 +69,7 @@ gem "rspec-rails", "3.8.0"
 gem "factory_bot_rails", "4.11.1"
 
 gem "rack-cors", "~> 1.0"
+
+gem "rubocop", "~> 0.59.1"
+
+gem "json-schema", "~> 2.8"
