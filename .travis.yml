@@ -5,9 +5,6 @@ script:
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PWD
-  - if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master" ]]; then
-      docker push $REPO:$TAG;
-    fi
   - docker push $REPO:$TAG;
 
 notifications:
