@@ -1,11 +1,15 @@
 class CamerasController < ApplicationController
   def index
     cameras = Camera.all
+    cameras = [Camera.new] if cameras.empty?
     render json: cameras
   end
 
   def show
     camera = Camera.find(params[:id])
+    render json: [camera]
+  rescue ActiveRecord::RecordNotFound
+    camera = Camera.new
     render json: [camera]
   end
 

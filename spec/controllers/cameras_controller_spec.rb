@@ -29,19 +29,32 @@ describe CamerasController, type: :controller do
     before(:each) do
       @camera = FactoryBot.build(:camera)
       @camera.calc_specs
-      @camera.save
     end
 
-    it 'should return http success' do
-      get :index
-      expect(response).to have_http_status(:success)
+    describe 'no data yet' do
+      it 'should return http success' do
+        get :index
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'should return the null camera' do
+        get :index
+        result = JSON.parse(response.body)
+        expect(result.length).to be(1)
+      end
     end
 
-    it 'should validate returned JSON' do
-      get :index
-      first_result = JSON.parse(response.body)[0]
-      validation = JSON::Validator.validate(schema, first_result)
-      expect(validation).to be(true)
+    describe 'has data' do
+      before(:each) do
+        @camera.save
+      end
+
+      it 'should validate returned JSON' do
+        get :index
+        first_result = JSON.parse(response.body)[0]
+        validation = JSON::Validator.validate(schema, first_result)
+        expect(validation).to be(true)
+      end
     end
   end
 
@@ -49,19 +62,32 @@ describe CamerasController, type: :controller do
     before(:each) do
       @camera = FactoryBot.build(:camera)
       @camera.calc_specs
-      @camera.save
     end
 
-    it 'should return http success' do
-      get :show, params: { id: @camera }
-      expect(response).to have_http_status(:success)
+    describe 'no data yet' do
+      it 'should return http success' do
+        get :show, params: { id: 1 }
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'should return the null camera' do
+        get :show, params: { id: 1 }
+        result = JSON.parse(response.body)
+        expect(result.length).to be(1)
+      end
     end
 
-    it 'should validate returned JSON' do
-      get :show, params: { id: @camera }
-      first_result = JSON.parse(response.body)[0]
-      validation = JSON::Validator.validate(schema, first_result)
-      expect(validation).to be(true)
+    describe 'has data' do
+      before(:each) do
+        @camera.save
+      end
+
+      it 'should validate returned JSON' do
+        get :show, params: { id: @camera }
+        first_result = JSON.parse(response.body)[0]
+        validation = JSON::Validator.validate(schema, first_result)
+        expect(validation).to be(true)
+      end
     end
   end
 
