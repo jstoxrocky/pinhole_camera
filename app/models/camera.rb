@@ -11,6 +11,7 @@ class Camera < ApplicationRecord
 
   def init
     @wavelength_light = 0.00055 # nm
+    calc_specs
   end
 
   def calc_pw_focal_length
