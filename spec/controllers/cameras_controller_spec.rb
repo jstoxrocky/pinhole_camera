@@ -28,7 +28,6 @@ describe CamerasController, type: :controller do
   describe 'GET #index' do
     before(:each) do
       @camera = FactoryBot.build(:camera)
-      @camera.calc_specs
     end
 
     describe 'no data yet' do
@@ -37,10 +36,10 @@ describe CamerasController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
-      it 'should return the null camera' do
+      it 'should return the empty list' do
         get :index
         result = JSON.parse(response.body)
-        expect(result.length).to be(1)
+        expect(result.length).to be(0)
       end
     end
 
@@ -61,7 +60,6 @@ describe CamerasController, type: :controller do
   describe 'GET #show' do
     before(:each) do
       @camera = FactoryBot.build(:camera)
-      @camera.calc_specs
     end
 
     describe 'no data yet' do
@@ -73,7 +71,7 @@ describe CamerasController, type: :controller do
       it 'should return the null camera' do
         get :show, params: { id: 1 }
         result = JSON.parse(response.body)
-        expect(result.length).to be(1)
+        expect(result.length).to be(0)
       end
     end
 

@@ -8,6 +8,16 @@ describe Camera, type: :model do
   end
 
   describe 'Camera' do
+    it 'should have all attributes on instatiation' do
+      camera = Camera.new(@attr)
+      expect(camera.pinhole_diameter).to_not be_blank
+      expect(camera.focal_length).to_not be_blank
+      expect(camera.image_width).to_not be_blank
+      expect(camera.image_width).to_not be_blank
+      expect(camera.pinhole_to_image_angle).to_not be_blank
+      expect(camera.distortion).to_not be_blank
+    end
+
     it 'should calculate correct Prober-Wellman focal length' do
       expected = 745.1564828614008
       camera = Camera.new(@attr)
