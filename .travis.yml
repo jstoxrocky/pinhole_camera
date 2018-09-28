@@ -1,4 +1,10 @@
+language: ruby
+
+install:
+  - bundle install
+
 script:
+  - rspec spec
   - export REPO=pinholecamera/backend
   - export TAG=`if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master" ]]; then echo "latest"; elif [[ $TRAVIS_PULL_REQUEST == "false" ]]; then echo $TRAVIS_BRANCH | sed -e 's,/,-,g'; else echo $TRAVIS_PULL_REQUEST_BRANCH | sed -e 's,/,-,g'; fi`
   - docker build -t $REPO:$TAG -f Dockerfile .
