@@ -19,6 +19,10 @@ class CamerasController < ApplicationController
     render json: []
   end
 
+  def clear
+    Camera.destroy_all
+  end
+
   private
 
   def camera_params
