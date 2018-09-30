@@ -19,13 +19,8 @@ module PinholeCamera
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:8080' 
-        options = {
-          headers: :any,
-          methods: %i[get post options delete],
-          credentials: true
-        }
-        resource '*', options
+        origins 'http://localhost:8080'
+        resource '*', headers: :any, methods: [:get, :post, :options, :delete], credentials: true
       end
     end
 
