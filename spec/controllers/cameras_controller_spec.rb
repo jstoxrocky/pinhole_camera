@@ -25,8 +25,13 @@ schema = {
 }
 
 describe CamerasController, type: :controller do
+  before(:each) do
+    Camera.delete_all
+  end
+
   describe 'GET #index' do
     before(:each) do
+      Camera.delete_all
       @camera = FactoryBot.build(:camera)
     end
 
@@ -134,6 +139,18 @@ describe CamerasController, type: :controller do
           end
         ).to change(Camera, :count).by(1)
       end
+    end
+  end
+
+  describe 'DELETE #clear' do
+    before(:each) do
+      @camera = FactoryBot.create(:camera)
+    end
+
+    it 'should return http success' do
+      delete :clear
+      expected = 0
+      expect(Camera.count).to eq(expected)
     end
   end
 end
