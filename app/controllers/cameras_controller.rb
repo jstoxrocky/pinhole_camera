@@ -21,6 +21,8 @@ class CamerasController < ApplicationController
 
   def clear
     Camera.destroy_all
+    cameras = Camera.all
+    render json: cameras
   end
 
   private
