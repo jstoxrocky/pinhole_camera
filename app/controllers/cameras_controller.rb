@@ -19,8 +19,9 @@ class CamerasController < ApplicationController
     render json: []
   end
 
-  def clear
-    Camera.destroy_all
+  def destroy
+    camera = Camera.find(params[:id])
+    camera.destroy
     cameras = Camera.all
     render json: cameras
   end
