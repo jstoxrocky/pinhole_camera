@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   get '/cameras', to: 'cameras#index'
   get '/cameras/:id', to: 'cameras#show'
   post '/cameras', to: 'cameras#create'
-  delete '/cameras', to: 'cameras#clear'
+  delete '/cameras/:id', to: 'cameras#destroy'
 end

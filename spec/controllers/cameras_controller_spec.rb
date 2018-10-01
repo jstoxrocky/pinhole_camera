@@ -142,15 +142,17 @@ describe CamerasController, type: :controller do
     end
   end
 
-  describe 'DELETE #clear' do
+  describe 'DELETE #destroy' do
     before(:each) do
       @camera = FactoryBot.create(:camera)
     end
 
     it 'should return http success' do
-      delete :clear
-      expected = 0
-      expect(Camera.count).to eq(expected)
+      expect(
+        lambda do
+          delete :destroy, params: { id: @camera.id }
+        end
+      ).to change(Camera, :count).by(-1)
     end
   end
 end
